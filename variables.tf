@@ -22,6 +22,11 @@ variable "vnet_address_space" {
   default     = ["10.0.0.0/16"]
 }
 
+variable "ssh_public_key" {
+  type        = string
+  description = "SSH public key for VM admin user"
+}
+
 variable "subnet_name" {
   description = "Subnet name"
   type        = string
