@@ -1,22 +1,23 @@
-# Linux VM using managed disks
 resource "azurerm_linux_virtual_machine" "vm" {
-  name                  = var.vm_name
-  resource_group_name   = azurerm_resource_group.rg.name
-  location              = azurerm_resource_group.rg.location
-  size                  = var.vm_size
-  admin_username        = var.admin_username
-  computer_name         = var.vm_name
-  provision_vm_agent    = true
+  name                = "policytest-vm"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  size                = "Standard_B1s"
+
+  admin_username = "azureuser"
+
+  network_interface_ids = [
+    azurerm_network_interface.nic.id
+  ]
 
   admin_ssh_key {
-    username   = var.admin_username
-    public_key = file(var.ssh_public_key_path)
+    username   = "azureuser"
+    public_key = file("~/.ssh/id_rsa.pub")
   }
 
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
-    name                 = "${var.vm_name}-osdisk"
   }
 
   source_image_reference {
