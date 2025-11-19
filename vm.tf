@@ -5,10 +5,8 @@ resource "azurerm_linux_virtual_machine" "vm" {
   location              = azurerm_resource_group.rg.location
   size                  = var.vm_size
   admin_username        = var.admin_username
-  network_interface_ids = [azurerm_network_interface.nic.id]
   computer_name         = var.vm_name
   provision_vm_agent    = true
-  tags                  = var.tags
 
   admin_ssh_key {
     username   = var.admin_username
