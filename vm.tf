@@ -1,4 +1,4 @@
-resource "azurerm_linux_virtual_machine" "vm" {
+/*resource "azurerm_linux_virtual_machine" "vm" {
   name                = "policytest-vm"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
@@ -24,4 +24,4 @@ resource "azurerm_linux_virtual_machine" "vm" {
     sku       = "20_04-lts"
     version   = "latest"
   }
-}
+}*/
