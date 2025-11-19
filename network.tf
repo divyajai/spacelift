@@ -1,17 +1,15 @@
-# Virtual network
 resource "azurerm_virtual_network" "vnet" {
-  name                = policytest-vnet
-  resource_group_name = azurerm_resource_group.rg.name
+  name                = "policytest-vnet"      
+  address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.rg.location
-  address_space       = var.vnet_address_space
+  resource_group_name = azurerm_resource_group.rg.name
 }
 
-# Subnet
 resource "azurerm_subnet" "subnet" {
-  name                 = var.subnet_name
+  name                 = "policytest-subnet"
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = [var.subnet_prefix]
+  address_prefixes     = ["10.0.1.0/24"]
 }
 
 
